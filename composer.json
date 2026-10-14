@@ -1,0 +1,24 @@
+{
+    "name": "azuriom/plugiit-live-map",
+    "type": "azuriom-plugin",
+    "description": "Intégrez vos cartes web Minecraft en direct (BlueMap, Dynmap, squaremap, Pl3xMap ou toute URL) avec onglets, plein écran, test d'intégration et widget pour votre thème.",
+    "autoload": {
+        "psr-4": {
+            "Azuriom\\Plugin\\PlugiitLiveMap\\": "src/"
+        }
+    },
+    "replace": {
+        "guzzlehttp/guzzle": "*",
+        "guzzlehttp/promises": "*",
+        "guzzlehttp/psr7": "*",
+        "monolog/monolog": "*",
+        "nesbot/carbon": "*",
+        "psr/container": "*",
+        "psr/event-dispatcher": "*",
+        "psr/http-client": "*",
+        "psr/http-factory": "*",
+        "psr/http-message": "*",
+        "psr/log": "*",
+        "psr/simple-cache": "*"
+    }
+}

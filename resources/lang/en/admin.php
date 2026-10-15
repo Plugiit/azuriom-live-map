@@ -56,7 +56,7 @@ return [
     ],
 
     'logs' => [
-        'plugiit-live-map-maps' => [
+        'live-map-maps' => [
             'created' => 'Created map #:id',
             'updated' => 'Updated map #:id',
             'deleted' => 'Deleted map #:id',

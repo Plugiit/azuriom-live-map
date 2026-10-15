@@ -1,11 +1,11 @@
 <?php
 
-namespace Azuriom\Plugin\PlugiitLiveMap\Controllers\Admin;
+namespace Azuriom\Plugin\LiveMap\Controllers\Admin;
 
 use Azuriom\Http\Controllers\Controller;
 use Azuriom\Models\ActionLog;
 use Azuriom\Models\Setting;
-use Azuriom\Plugin\PlugiitLiveMap\Models\LiveMap;
+use Azuriom\Plugin\LiveMap\Models\LiveMap;
 use Illuminate\Http\Request;
 
 class SettingController extends Controller
@@ -15,12 +15,12 @@ class SettingController extends Controller
      */
     public function show()
     {
-        return view('plugiit-live-map::admin.settings', [
+        return view('live-map::admin.settings', [
             'maps' => LiveMap::orderBy('position')->orderBy('id')->get(),
-            'height' => (int) setting('plugiit-live-map.height', 650),
-            'defaultMap' => (int) setting('plugiit-live-map.default_map'),
-            'fullscreen' => (bool) setting('plugiit-live-map.fullscreen', true),
-            'newTab' => (bool) setting('plugiit-live-map.new_tab', true),
+            'height' => (int) setting('live-map.height', 650),
+            'defaultMap' => (int) setting('live-map.default_map'),
+            'fullscreen' => (bool) setting('live-map.fullscreen', true),
+            'newTab' => (bool) setting('live-map.new_tab', true),
         ]);
     }
 
@@ -31,19 +31,19 @@ class SettingController extends Controller
     {
         $validated = $request->validate([
             'height' => ['required', 'integer', 'min:250', 'max:2000'],
-            'default_map' => ['nullable', 'integer', 'exists:plugiit_live_map_maps,id'],
+            'default_map' => ['nullable', 'integer', 'exists:live_map_maps,id'],
         ]);
 
         Setting::updateSettings([
-            'plugiit-live-map.height' => $validated['height'],
-            'plugiit-live-map.default_map' => $validated['default_map'] ?? null,
-            'plugiit-live-map.fullscreen' => $request->boolean('fullscreen'),
-            'plugiit-live-map.new_tab' => $request->boolean('new_tab'),
+            'live-map.height' => $validated['height'],
+            'live-map.default_map' => $validated['default_map'] ?? null,
+            'live-map.fullscreen' => $request->boolean('fullscreen'),
+            'live-map.new_tab' => $request->boolean('new_tab'),
         ]);
 
-        ActionLog::log('plugiit-live-map.settings.updated');
+        ActionLog::log('live-map.settings.updated');
 
-        return to_route('plugiit-live-map.admin.settings')
+        return to_route('live-map.admin.settings')
             ->with('success', trans('messages.status.success'));
     }
 }

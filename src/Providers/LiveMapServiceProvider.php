@@ -1,13 +1,13 @@
 <?php
 
-namespace Azuriom\Plugin\PlugiitLiveMap\Providers;
+namespace Azuriom\Plugin\LiveMap\Providers;
 
 use Azuriom\Extensions\Plugin\BasePluginServiceProvider;
 use Azuriom\Models\ActionLog;
 use Azuriom\Models\Permission;
-use Azuriom\Plugin\PlugiitLiveMap\Models\LiveMap;
+use Azuriom\Plugin\LiveMap\Models\LiveMap;
 
-class PlugiitLiveMapServiceProvider extends BasePluginServiceProvider
+class LiveMapServiceProvider extends BasePluginServiceProvider
 {
     /**
      * Bootstrap any plugin services.
@@ -25,17 +25,17 @@ class PlugiitLiveMapServiceProvider extends BasePluginServiceProvider
         $this->registerAdminNavigation();
 
         Permission::registerPermissions([
-            'plugiit-live-map.admin' => 'plugiit-live-map::admin.permission',
+            'live-map.admin' => 'live-map::admin.permission',
         ]);
 
         ActionLog::registerLogModels([
             LiveMap::class,
-        ], 'plugiit-live-map::admin.logs');
+        ], 'live-map::admin.logs');
 
-        ActionLog::registerLogs('plugiit-live-map.settings.updated', [
+        ActionLog::registerLogs('live-map.settings.updated', [
             'icon' => 'map',
             'color' => 'info',
-            'message' => 'plugiit-live-map::admin.logs.settings',
+            'message' => 'live-map::admin.logs.settings',
         ]);
     }
 
@@ -47,7 +47,7 @@ class PlugiitLiveMapServiceProvider extends BasePluginServiceProvider
     protected function routeDescriptions(): array
     {
         return [
-            'plugiit-live-map.index' => trans('plugiit-live-map::messages.title'),
+            'live-map.index' => trans('live-map::messages.title'),
         ];
     }
 
@@ -59,15 +59,15 @@ class PlugiitLiveMapServiceProvider extends BasePluginServiceProvider
     protected function adminNavigation(): array
     {
         return [
-            'plugiit-live-map' => [
-                'name' => trans('plugiit-live-map::admin.nav.title'),
+            'live-map' => [
+                'name' => trans('live-map::admin.nav.title'),
                 'type' => 'dropdown',
                 'icon' => 'bi bi-map',
-                'route' => 'plugiit-live-map.admin.*',
-                'permission' => 'plugiit-live-map.admin',
+                'route' => 'live-map.admin.*',
+                'permission' => 'live-map.admin',
                 'items' => [
-                    'plugiit-live-map.admin.maps.index' => trans('plugiit-live-map::admin.nav.maps'),
-                    'plugiit-live-map.admin.settings' => trans('plugiit-live-map::admin.nav.settings'),
+                    'live-map.admin.maps.index' => trans('live-map::admin.nav.maps'),
+                    'live-map.admin.settings' => trans('live-map::admin.nav.settings'),
                 ],
             ],
         ];

@@ -1,9 +1,9 @@
 <?php
 
-namespace Azuriom\Plugin\PlugiitLiveMap\Controllers;
+namespace Azuriom\Plugin\LiveMap\Controllers;
 
 use Azuriom\Http\Controllers\Controller;
-use Azuriom\Plugin\PlugiitLiveMap\Models\LiveMap;
+use Azuriom\Plugin\LiveMap\Models\LiveMap;
 
 class LiveMapController extends Controller
 {
@@ -32,12 +32,12 @@ class LiveMapController extends Controller
         $maps = LiveMap::enabledMaps();
         $maps->load('server');
 
-        return view('plugiit-live-map::index', [
+        return view('live-map::index', [
             'maps' => $maps,
             'current' => $current !== null ? $maps->firstWhere('id', $current->id) : null,
-            'height' => (int) setting('plugiit-live-map.height', 650),
-            'allowFullscreen' => (bool) setting('plugiit-live-map.fullscreen', true),
-            'showNewTab' => (bool) setting('plugiit-live-map.new_tab', true),
+            'height' => (int) setting('live-map.height', 650),
+            'allowFullscreen' => (bool) setting('live-map.fullscreen', true),
+            'showNewTab' => (bool) setting('live-map.new_tab', true),
         ]);
     }
 }

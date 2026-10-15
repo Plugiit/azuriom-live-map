@@ -1,9 +1,9 @@
 <?php
 
-namespace Azuriom\Plugin\PlugiitLiveMap\Requests;
+namespace Azuriom\Plugin\LiveMap\Requests;
 
 use Azuriom\Http\Requests\Traits\ConvertCheckbox;
-use Azuriom\Plugin\PlugiitLiveMap\Models\LiveMap;
+use Azuriom\Plugin\LiveMap\Models\LiveMap;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 

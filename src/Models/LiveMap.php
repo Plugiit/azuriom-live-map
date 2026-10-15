@@ -1,6 +1,6 @@
 <?php
 
-namespace Azuriom\Plugin\PlugiitLiveMap\Models;
+namespace Azuriom\Plugin\LiveMap\Models;
 
 use Azuriom\Models\Server;
 use Azuriom\Models\Traits\Loggable;
@@ -28,7 +28,7 @@ class LiveMap extends Model
 {
     use Loggable;
 
-    public const CACHE_KEY = 'plugiit-live-map.maps';
+    public const CACHE_KEY = 'live-map.maps';
 
     /**
      * Supported map renderers, with their default icon.
@@ -48,7 +48,7 @@ class LiveMap extends Model
      *
      * @var string
      */
-    protected $table = 'plugiit_live_map_maps';
+    protected $table = 'live_map_maps';
 
     /**
      * The attributes that are mass assignable.
@@ -112,7 +112,7 @@ class LiveMap extends Model
     public static function defaultMap(): ?self
     {
         $maps = self::enabledMaps();
-        $defaultId = (int) setting('plugiit-live-map.default_map');
+        $defaultId = (int) setting('live-map.default_map');
 
         return $maps->firstWhere('id', $defaultId) ?? $maps->first();
     }

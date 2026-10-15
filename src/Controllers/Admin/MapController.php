@@ -1,12 +1,12 @@
 <?php
 
-namespace Azuriom\Plugin\PlugiitLiveMap\Controllers\Admin;
+namespace Azuriom\Plugin\LiveMap\Controllers\Admin;
 
 use Azuriom\Http\Controllers\Controller;
 use Azuriom\Models\Server;
-use Azuriom\Plugin\PlugiitLiveMap\Models\LiveMap;
-use Azuriom\Plugin\PlugiitLiveMap\Requests\LiveMapRequest;
-use Azuriom\Plugin\PlugiitLiveMap\Support\EmbedTester;
+use Azuriom\Plugin\LiveMap\Models\LiveMap;
+use Azuriom\Plugin\LiveMap\Requests\LiveMapRequest;
+use Azuriom\Plugin\LiveMap\Support\EmbedTester;
 use Illuminate\Http\Request;
 
 class MapController extends Controller
@@ -16,7 +16,7 @@ class MapController extends Controller
      */
     public function index()
     {
-        return view('plugiit-live-map::admin.maps.index', [
+        return view('live-map::admin.maps.index', [
             'maps' => LiveMap::with('server')->orderBy('position')->orderBy('id')->get(),
             'defaultMapId' => LiveMap::defaultMap()?->id,
         ]);
@@ -27,7 +27,7 @@ class MapController extends Controller
      */
     public function create()
     {
-        return view('plugiit-live-map::admin.maps.create', [
+        return view('live-map::admin.maps.create', [
             'servers' => Server::all(),
             'types' => array_keys(LiveMap::TYPES),
         ]);
@@ -40,7 +40,7 @@ class MapController extends Controller
     {
         LiveMap::create($request->validated());
 
-        return to_route('plugiit-live-map.admin.maps.index')
+        return to_route('live-map.admin.maps.index')
             ->with('success', trans('messages.status.success'));
     }
 
@@ -49,7 +49,7 @@ class MapController extends Controller
      */
     public function edit(LiveMap $map)
     {
-        return view('plugiit-live-map::admin.maps.edit', [
+        return view('live-map::admin.maps.edit', [
             'map' => $map,
             'servers' => Server::all(),
             'types' => array_keys(LiveMap::TYPES),
@@ -63,7 +63,7 @@ class MapController extends Controller
     {
         $map->update($request->validated());
 
-        return to_route('plugiit-live-map.admin.maps.index')
+        return to_route('live-map.admin.maps.index')
             ->with('success', trans('messages.status.success'));
     }
 
@@ -74,7 +74,7 @@ class MapController extends Controller
     {
         $map->delete();
 
-        return to_route('plugiit-live-map.admin.maps.index')
+        return to_route('live-map.admin.maps.index')
             ->with('success', trans('messages.status.success'));
     }
 

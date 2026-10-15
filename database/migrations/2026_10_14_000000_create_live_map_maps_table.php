@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('plugiit_live_map_maps', function (Blueprint $table) {
+        Schema::create('live_map_maps', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 100);
             $table->string('type', 20)->default('custom');
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('plugiit_live_map_maps');
+        Schema::dropIfExists('live_map_maps');
     }
 };

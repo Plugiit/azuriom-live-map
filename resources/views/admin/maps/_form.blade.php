@@ -11,11 +11,11 @@
     </div>
 
     <div class="col-md-6 mb-3">
-        <label class="form-label" for="typeSelect">{{ trans('plugiit-live-map::admin.maps.type') }}</label>
+        <label class="form-label" for="typeSelect">{{ trans('live-map::admin.maps.type') }}</label>
         <select class="form-select @error('type') is-invalid @enderror" id="typeSelect" name="type" required>
             @foreach($types as $type)
                 <option value="{{ $type }}" @selected(old('type', $map->type ?? 'bluemap') === $type)>
-                    {{ trans('plugiit-live-map::messages.types.'.$type) }}
+                    {{ trans('live-map::messages.types.'.$type) }}
                 </option>
             @endforeach
         </select>
@@ -27,27 +27,27 @@
 </div>
 
 <div class="mb-3">
-    <label class="form-label" for="urlInput">{{ trans('plugiit-live-map::admin.maps.url') }}</label>
+    <label class="form-label" for="urlInput">{{ trans('live-map::admin.maps.url') }}</label>
     <div class="input-group @error('url') has-validation @enderror">
         <input type="url" class="form-control @error('url') is-invalid @enderror" id="urlInput" name="url" value="{{ old('url', $map->url ?? '') }}" maxlength="500" placeholder="https://map.example.com/" required>
         <button type="button" class="btn btn-outline-info" id="testMapButton">
-            <i class="bi bi-plug"></i> {{ trans('plugiit-live-map::admin.maps.test') }}
+            <i class="bi bi-plug"></i> {{ trans('live-map::admin.maps.test') }}
         </button>
 
         @error('url')
         <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
         @enderror
     </div>
-    <div class="form-text">{{ trans('plugiit-live-map::admin.maps.url_info') }}</div>
+    <div class="form-text">{{ trans('live-map::admin.maps.url_info') }}</div>
 
     <div id="testMapResult" class="alert mt-2 mb-0 d-none" role="status"></div>
 </div>
 
 <div class="row gx-3">
     <div class="col-md-4 mb-3">
-        <label class="form-label" for="serverSelect">{{ trans('plugiit-live-map::admin.maps.server') }}</label>
+        <label class="form-label" for="serverSelect">{{ trans('live-map::admin.maps.server') }}</label>
         <select class="form-select @error('server_id') is-invalid @enderror" id="serverSelect" name="server_id">
-            <option value="">{{ trans('plugiit-live-map::admin.maps.no_server') }}</option>
+            <option value="">{{ trans('live-map::admin.maps.no_server') }}</option>
             @foreach($servers as $server)
                 <option value="{{ $server->id }}" @selected((int) old('server_id', $map->server_id ?? 0) === $server->id)>{{ $server->name }}</option>
             @endforeach
@@ -59,9 +59,9 @@
     </div>
 
     <div class="col-md-4 mb-3">
-        <label class="form-label" for="iconInput">{{ trans('plugiit-live-map::admin.maps.icon') }}</label>
+        <label class="form-label" for="iconInput">{{ trans('live-map::admin.maps.icon') }}</label>
         <input type="text" class="form-control @error('icon') is-invalid @enderror" id="iconInput" name="icon" value="{{ old('icon', $map->icon ?? '') }}" maxlength="100" placeholder="bi bi-map">
-        <div class="form-text">{{ trans('plugiit-live-map::admin.maps.icon_info') }}</div>
+        <div class="form-text">{{ trans('live-map::admin.maps.icon_info') }}</div>
 
         @error('icon')
         <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
@@ -69,7 +69,7 @@
     </div>
 
     <div class="col-md-4 mb-3">
-        <label class="form-label" for="positionInput">{{ trans('plugiit-live-map::admin.maps.position') }}</label>
+        <label class="form-label" for="positionInput">{{ trans('live-map::admin.maps.position') }}</label>
         <input type="number" min="0" max="10000" class="form-control @error('position') is-invalid @enderror" id="positionInput" name="position" value="{{ old('position', $map->position ?? 0) }}">
 
         @error('position')
@@ -80,7 +80,7 @@
 
 <div class="mb-3 form-check form-switch">
     <input type="checkbox" class="form-check-input" id="enableSwitch" name="is_enabled" @checked(old('is_enabled', $map->is_enabled ?? true))>
-    <label class="form-check-label" for="enableSwitch">{{ trans('plugiit-live-map::admin.maps.enable') }}</label>
+    <label class="form-check-label" for="enableSwitch">{{ trans('live-map::admin.maps.enable') }}</label>
 </div>
 
 @push('footer-scripts')
@@ -111,9 +111,9 @@
                 }
 
                 button.disabled = true;
-                button.textContent = @json(trans('plugiit-live-map::admin.maps.testing'));
+                button.textContent = @json(trans('live-map::admin.maps.testing'));
 
-                fetch(@json(route('plugiit-live-map.admin.maps.test')), {
+                fetch(@json(route('live-map.admin.maps.test')), {
                     method: 'POST',
                     headers: {
                         'Accept': 'application/json',
@@ -131,7 +131,7 @@
                         show(data.status, data.messages);
                     });
                 }).catch(function () {
-                    show('error', [@json(trans('plugiit-live-map::admin.test.error'))]);
+                    show('error', [@json(trans('live-map::admin.test.error'))]);
                 }).finally(function () {
                     button.disabled = false;
                     button.innerHTML = label;

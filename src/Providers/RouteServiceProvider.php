@@ -1,6 +1,6 @@
 <?php
 
-namespace Azuriom\Plugin\PlugiitLiveMap\Providers;
+namespace Azuriom\Plugin\LiveMap\Providers;
 
 use Azuriom\Extensions\Plugin\BaseRouteServiceProvider;
 use Illuminate\Support\Facades\Route;

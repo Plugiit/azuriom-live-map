@@ -1,7 +1,7 @@
 <?php
 
-use Azuriom\Plugin\PlugiitLiveMap\Controllers\Admin\MapController;
-use Azuriom\Plugin\PlugiitLiveMap\Controllers\Admin\SettingController;
+use Azuriom\Plugin\LiveMap\Controllers\Admin\MapController;
+use Azuriom\Plugin\LiveMap\Controllers\Admin\SettingController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 */
 
-Route::middleware('can:plugiit-live-map.admin')->group(function () {
+Route::middleware('can:live-map.admin')->group(function () {
     Route::get('/settings', [SettingController::class, 'show'])->name('settings');
     Route::post('/settings', [SettingController::class, 'save'])->name('settings.save');
 

@@ -8,8 +8,8 @@ Azuriom plugin · v1.0.0 · by Plugiit
 
 ## Features
 
-- **Public map page** at `/plugiit-live-map` with tabs to switch between maps (a dropdown selector on mobile).
-- **Direct link per map**: `/plugiit-live-map/{id}`.
+- **Public map page** at `/live-map` with tabs to switch between maps (a dropdown selector on mobile).
+- **Direct link per map**: `/live-map/{id}`.
 - **Supported map types**: BlueMap, Dynmap, squaremap, Pl3xMap and custom URL (Overviewer, home-made map, etc.), each with its own default icon.
 - **Responsive iframe** with lazy loading (`loading="lazy"`) and a loading indicator.
 - **Fullscreen button** (Fullscreen API, WebKit prefix supported) and **"Open in a new tab"** link.
@@ -34,10 +34,10 @@ Azuriom plugin · v1.0.0 · by Plugiit
 1. Copy the plugin into the `plugins/` directory of your Azuriom installation. The folder **must be named after the plugin ID**, not after the repository:
 
    ```
-   plugins/plugiit-live-map/
+   plugins/live-map/
    ```
 
-2. Enable the plugin from **Admin → Plugins**. The migrations (table `plugiit_live_map_maps`) run on activation.
+2. Enable the plugin from **Admin → Plugins**. The migrations (table `live_map_maps`) run on activation.
 3. Add the page to your navbar: **Admin → Navbar → Add**, type "Plugin", route "Server map".
 
 ## Configuration
@@ -46,11 +46,11 @@ Azuriom plugin · v1.0.0 · by Plugiit
 
 | Permission | Description |
 | --- | --- |
-| `plugiit-live-map.admin` | Manage live maps |
+| `live-map.admin` | Manage live maps |
 
 ### Maps
 
-**Admin → Live map → Maps** (`/admin/plugiit-live-map/maps`): create, edit and delete maps.
+**Admin → Live map → Maps** (`/admin/live-map/maps`): create, edit and delete maps.
 
 | Field | Description |
 | --- | --- |
@@ -66,12 +66,12 @@ Use the **Test the URL** button next to the URL field to check that the map can 
 
 ### Settings
 
-**Admin → Live map → Settings** (`/admin/plugiit-live-map/settings`):
+**Admin → Live map → Settings** (`/admin/live-map/settings`):
 
 | Setting | Default | Description |
 | --- | --- | --- |
 | Map height | 650 px | Between 250 and 2000 px. Limited to 75% of the screen height on mobile. |
-| Map displayed by default | First enabled map | Map shown on `/plugiit-live-map`. |
+| Map displayed by default | First enabled map | Map shown on `/live-map`. |
 | Display the fullscreen button | On | Also applies to the widget. |
 | Display the "Open in a new tab" link | On | Public page only. |
 
@@ -81,14 +81,14 @@ Use the **Test the URL** button next to the URL field to check that the map can 
 
 | Page | URL |
 | --- | --- |
-| Default map | `/plugiit-live-map` |
-| Specific map | `/plugiit-live-map/{id}` |
+| Default map | `/live-map` |
+| Specific map | `/live-map/{id}` |
 
 ### Theme widget
 
 ```blade
-@include('plugiit-live-map::widget')
-@include('plugiit-live-map::widget', ['mapId' => 2, 'height' => 350, 'title' => false])
+@include('live-map::widget')
+@include('live-map::widget', ['mapId' => 2, 'height' => 350, 'title' => false])
 ```
 
 | Parameter | Default | Description |

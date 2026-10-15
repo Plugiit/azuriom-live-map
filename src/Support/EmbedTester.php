@@ -1,6 +1,6 @@
 <?php
 
-namespace Azuriom\Plugin\PlugiitLiveMap\Support;
+namespace Azuriom\Plugin\LiveMap\Support;
 
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
@@ -20,7 +20,7 @@ class EmbedTester
         $messages = [];
 
         if (! in_array(parse_url($url, PHP_URL_SCHEME), ['http', 'https'], true)) {
-            return $this->result('error', null, [trans('plugiit-live-map::admin.test.invalid_url')]);
+            return $this->result('error', null, [trans('live-map::admin.test.invalid_url')]);
         }
 
         try {
@@ -30,7 +30,7 @@ class EmbedTester
                 ->withOptions(['allow_redirects' => ['max' => 5]])
                 ->get($url);
         } catch (Throwable $e) {
-            return $this->result('error', null, [trans('plugiit-live-map::admin.test.unreachable', [
+            return $this->result('error', null, [trans('live-map::admin.test.unreachable', [
                 'error' => Str::limit($e->getMessage(), 150),
             ])]);
         }
@@ -41,9 +41,9 @@ class EmbedTester
 
         if (! $response->successful()) {
             $status = 'error';
-            $messages[] = trans('plugiit-live-map::admin.test.http_error', ['status' => $response->status()]);
+            $messages[] = trans('live-map::admin.test.http_error', ['status' => $response->status()]);
         } else {
-            $messages[] = trans('plugiit-live-map::admin.test.reachable', ['status' => $response->status()]);
+            $messages[] = trans('live-map::admin.test.reachable', ['status' => $response->status()]);
         }
 
         $blockReasons = $this->frameBlockReasons($frameOptions, $csp, $url, $siteUrl);
@@ -51,16 +51,16 @@ class EmbedTester
         if ($blockReasons !== []) {
             $status = 'error';
             array_push($messages, ...$blockReasons);
-            $messages[] = trans('plugiit-live-map::admin.test.how_to_fix', [
+            $messages[] = trans('live-map::admin.test.how_to_fix', [
                 'site' => $this->origin($siteUrl),
             ]);
         } elseif ($response->successful()) {
-            $messages[] = trans('plugiit-live-map::admin.test.embeddable');
+            $messages[] = trans('live-map::admin.test.embeddable');
         }
 
         if (Str::startsWith($siteUrl, 'https://') && Str::startsWith($url, 'http://')) {
             $status = $status === 'error' ? 'error' : 'warning';
-            $messages[] = trans('plugiit-live-map::admin.test.mixed_content');
+            $messages[] = trans('live-map::admin.test.mixed_content');
         }
 
         return $this->result($status, $response->status(), $messages, [
@@ -81,7 +81,7 @@ class EmbedTester
 
         if ($csp !== null && preg_match('/frame-ancestors\s+([^;]*)/i', $csp, $matches)) {
             if (! $this->ancestorsAllow(trim($matches[1]), $siteUrl, $sameOrigin)) {
-                $reasons[] = trans('plugiit-live-map::admin.test.csp_blocked', ['value' => trim($matches[1])]);
+                $reasons[] = trans('live-map::admin.test.csp_blocked', ['value' => trim($matches[1])]);
             }
 
             // When frame-ancestors is present, browsers ignore X-Frame-Options.
@@ -92,7 +92,7 @@ class EmbedTester
             $value = strtoupper(trim($frameOptions));
 
             if ($value === 'DENY' || ($value === 'SAMEORIGIN' && ! $sameOrigin) || str_starts_with($value, 'ALLOW-FROM')) {
-                $reasons[] = trans('plugiit-live-map::admin.test.xfo_blocked', ['value' => $frameOptions]);
+                $reasons[] = trans('live-map::admin.test.xfo_blocked', ['value' => $frameOptions]);
             }
         }
 

@@ -1,14 +1,14 @@
 <?php
 
-namespace Azuriom\Plugin\PlugiitLiveMap\Tests;
+namespace Azuriom\Plugin\LiveMap\Tests;
 
-use Azuriom\Plugin\PlugiitLiveMap\Support\EmbedTester;
+use Azuriom\Plugin\LiveMap\Support\EmbedTester;
 use Illuminate\Support\Facades\Http;
 use Tests\TestCase;
 
 /**
  * Run from the Azuriom root:
- *   vendor/bin/phpunit plugins/plugiit-live-map/tests
+ *   vendor/bin/phpunit plugins/live-map/tests
  */
 class EmbedTesterTest extends TestCase
 {

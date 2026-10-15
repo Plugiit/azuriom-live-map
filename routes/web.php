@@ -1,6 +1,6 @@
 <?php
 
-use Azuriom\Plugin\PlugiitLiveMap\Controllers\LiveMapController;
+use Azuriom\Plugin\LiveMap\Controllers\LiveMapController;
 use Illuminate\Support\Facades\Route;
 
 /*

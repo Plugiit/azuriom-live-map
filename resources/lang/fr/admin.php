@@ -56,7 +56,7 @@ return [
     ],
 
     'logs' => [
-        'plugiit-live-map-maps' => [
+        'live-map-maps' => [
             'created' => 'Création de la carte #:id',
             'updated' => 'Mise à jour de la carte #:id',
             'deleted' => 'Suppression de la carte #:id',

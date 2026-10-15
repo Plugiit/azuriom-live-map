@@ -4,7 +4,7 @@
 
 Embed one or more live Minecraft web maps (BlueMap, Dynmap, squaremap, Pl3xMap or any URL) right into your Azuriom website.
 
-Azuriom plugin · v1.0.0 · by Plugiit
+Azuriom plugin · v1.0.1 · by Plugiit
 
 ## Features
 

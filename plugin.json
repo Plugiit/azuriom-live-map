@@ -2,7 +2,7 @@
     "id": "live-map",
     "name": "Plugiit Live Map",
     "description": "Intégrez vos cartes web Minecraft en direct (BlueMap, Dynmap, squaremap, Pl3xMap ou toute URL) avec onglets, plein écran, test d'intégration et widget pour votre thème.",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "url": "https://plugiit.dev",
     "authors": [
         "Plugiit"
